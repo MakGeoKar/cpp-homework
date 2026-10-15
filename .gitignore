@@ -1,0 +1,24 @@
+# Build artifacts
+build/
+cmake-build-*/
+*.o
+*.obj
+*.out
+*.exe
+*.a
+*.so
+*.dylib
+*.dSYM/
+a.out
+main
+
+# IDE
+.vscode/
+.idea/
+.vs/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
