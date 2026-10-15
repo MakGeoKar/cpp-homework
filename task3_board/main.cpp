@@ -1,5 +1,4 @@
 #include <cstring>
-#include <iomanip>
 #include <iostream>
 
 const int kRows = 5;
@@ -25,8 +24,7 @@ bool Put(char board[kRows][kCols], int x, int y, char c) {
 
 bool Text(char board[kRows][kCols], int x, int y, const char* word) {
   int len = strlen(word);
-  // если влезают первая и последняя буквы, то влезает всё слово
-  if (len == 0 || !Inside(x, y) || !Inside(x + len - 1, y)) {
+  if (!Inside(x, y) || !Inside(x + len - 1, y)) {
     return false;
   }
   for (int i = 0; i < len; ++i) {
@@ -49,7 +47,7 @@ int main() {
   Clear(board);
 
   char cmd[32];
-  while (std::cin >> std::setw(32) >> cmd) {
+  while (std::cin >> cmd) {
     if (strcmp(cmd, "quit") == 0) {
       break;
     }
@@ -68,12 +66,10 @@ int main() {
     } else if (strcmp(cmd, "text") == 0) {
       int x, y;
       char word[32];
-      std::cin >> x >> y >> std::setw(32) >> word;
+      std::cin >> x >> y >> word;
       if (!Text(board, x, y, word)) {
         std::cout << "error\n";
       }
-    } else {
-      std::cout << "error\n";
     }
   }
   return 0;

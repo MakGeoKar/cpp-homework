@@ -24,10 +24,6 @@ int main() {
 
   int groups;
   std::cin >> groups;
-  if (!std::cin || groups <= 0) {
-    std::cout << "error\n";
-    return 0;
-  }
 
   int* group_size = new int[groups];
   int students = 0;
@@ -36,19 +32,17 @@ int main() {
     students += group_size[g];
   }
 
-  int* marks_count = new int[students + 1];
+  int* marks_count = new int[students];
   int marks = 0;
   for (int i = 0; i < students; ++i) {
     std::cin >> marks_count[i];
     marks += marks_count[i];
   }
 
-  // сначала все указатели, потом все int, чтобы ничего не съехало
-  // по выравниванию
   size_t bytes =
       groups * sizeof(int**) + students * sizeof(int*) + marks * sizeof(int);
   void* memory = operator new(bytes);
-  char* p = (char*)memory;  // арифметику на void* делать нельзя
+  char* p = (char*)memory;
 
   int*** journal = (int***)p;
   p += groups * sizeof(int**);
